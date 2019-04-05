@@ -44,7 +44,6 @@ export class ProductosService {
         this.productosCarrito.push(prod);
       }
     });
-    this.temp.length = 0;
   }
 
   anadirATemp(producto: Producto) {

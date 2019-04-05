@@ -22,7 +22,7 @@ export class ProductosListaComponent implements OnInit {
 
   constructor(private productosService: ProductosService,
               private router: Router,
-              private route: ActivatedRoute ) { }
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.productos = this.productosService.getProductos();
@@ -41,10 +41,12 @@ export class ProductosListaComponent implements OnInit {
           this.carrito = arregloProducto;
         }
       );
+    this.productosService.temp.length = 0;
   }
 
   anadirAlCarrito() {
     this.productosService.anadirAlCarrito();
+    this.cantidad = this.productosService.temp.length;
   }
 
   anadirATemp(producto: Producto) {
@@ -55,10 +57,12 @@ export class ProductosListaComponent implements OnInit {
 
   borrarDelCarrito(productoABorrar: Producto) {
     this.productosService.borrarProducto(productoABorrar.id);
+    this.total = 0;
+    this.productosService.productosCarrito.forEach(prod => this.total += prod.precio);
   }
 
   mostrarDetalle(productoDetalle: Producto) {
-    this.router.navigate([productoDetalle.id], {relativeTo: this.route});
+    this.router.navigate([productoDetalle.id], { relativeTo: this.route });
   }
 
 }
