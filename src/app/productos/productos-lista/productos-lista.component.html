@@ -1,0 +1,30 @@
+<span *ngIf="!modoCarrito">
+  <button (click)="anadirAlCarrito()" type="button" id="btAgregar" class="btn btn-success btn-lg mt-2">
+    Añadir al carrito
+  </button>
+</span>
+<span *ngIf="!modoCarrito">
+    <h1>Productos seleccionados: {{cantidad}}</h1>
+  <app-producto-item 
+    *ngFor="let pro of productos" 
+    [producto]="pro" 
+    (detalle)="mostrarDetalle($event)"
+    (anadir) = "anadirATemp($event)">
+  </app-producto-item>
+</span>
+
+<span *ngIf="modoCarrito">
+    <app-producto-item 
+    *ngFor="let pro of carrito" 
+    [producto]="pro" 
+    (detalle)="mostrarDetalle($event)"
+    (borrar)="borrarDelCarrito($event)">
+  </app-producto-item>
+  <h1>Total: ${{total}}</h1>
+</span>
+
+<span *ngIf="!modoCarrito">
+  <button (click)="anadirAlCarrito()" type="button" id="btAgregar" class="btn btn-success btn-lg mt-2">
+    Añadir al carrito
+  </button>
+</span>
